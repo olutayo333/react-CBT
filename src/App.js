@@ -1,24 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
-
+// import Cbt from '../components/Cbt'
+// import { Route, Routes } from 'react-router-dom'
+// import Admin from '../components/Admin'
+// import Home from '../components/Home'
+// import Intro from '../components/Intro'
+import Cbt from './components/Cbt';
+import Admin from './components/Admin';
+import Home from './components/Home';
+import Intro from './components/Intro';
+import { Route, Routes } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+      <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='cbt' element={<Cbt/>} />
+          <Route path='admin' element={<Admin/>}/>
+          
+          <Route path='home' element={<Home/>} />
+          <Route path="intro" element={<Intro/>} />
+          <Route path="/*" element={<Home/>} />
+        </Routes>
+    </>
   );
 }
 
