@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom'
 const Admin = () => {
-    let adminURL = "http://localhost:7002/user/admin"
+    const navigate = useNavigate()
+    let adminURL ="https://node-cbtserver.onrender.com/user/admin"
+    //let adminURL = "http://localhost:7002/user/admin"
     const [question, setquestion] = useState("")
     const [optionA, setoptionA] = useState("")
     const [optionB, setoptionB] = useState("")
@@ -26,9 +28,11 @@ const Admin = () => {
         //console.log(question, optionA, optionB, optionC, optionD, correctAnswer)
         axios.post (adminURL, {question, optionA, optionB, optionC, optionD, correctAnswer})
         .then((response)=>{console.log(response)
-            if (response.data.status){alert("Question saved successfully")}
+            if (response.data.status){alert("Question saved successfully"); 
+            navigate("/admin")}
             else(alert(response.data.status))
             ;})
+            
     }
 
   return (
