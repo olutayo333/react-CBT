@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/react-CBT/static/css/main.f855e6bc.css",
+    "main.js": "/react-CBT/static/js/main.77bd6696.js",
+    "static/js/453.f0120219.chunk.js": "/react-CBT/static/js/453.f0120219.chunk.js",
+    "static/media/Regis Logo 12 Transparent bg.png": "/react-CBT/static/media/Regis Logo 12 Transparent bg.f589bcbf3d66d3e46220.png",
+    "static/media/logo.svg": "/react-CBT/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/react-CBT/index.html",
+    "main.f855e6bc.css.map": "/react-CBT/static/css/main.f855e6bc.css.map",
+    "main.77bd6696.js.map": "/react-CBT/static/js/main.77bd6696.js.map",
+    "453.f0120219.chunk.js.map": "/react-CBT/static/js/453.f0120219.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.77bd6696.js"
+  ]
+}
