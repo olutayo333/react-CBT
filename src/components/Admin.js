@@ -31,21 +31,22 @@ const Admin = () => {
             if (response.data.status){alert("Question saved successfully"); 
             navigate("/admin")}
             else(alert(response.data.status))
+             setquestion(""); setoptionA(""); setoptionB(""); setoptionC(""); setoptionD(""); setcorrectAnswer("")
             ;})
             
     }
 
   return (
     <center>
-    <div className='container fluid my-5 py-5 '>
+    <div className='container fluid my-5 py-5 shadow-lg '>
       <h2>Set Questions Here</h2>
         {/* <textarea name="" id="" cols="40" rows="5" onChange={(e)=>setquestion(e.target.value)} placeholder='Question'></textarea> */}
-        <input type="text" placeholder='Question' onChange={(e)=>setquestion(e.target.value)} className='form form-control col-12 my-3' />
-        <input type="text"  placeholder='Option A' onChange={(e)=>setoptionA(e.target.value)}/> 
-        <input type="text" placeholder='Option B' onChange={(e)=>setoptionB(e.target.value)}/> 
-        <input type="text" placeholder='Option C' onChange={(e)=>setoptionC(e.target.value)}/> 
-        <input type="text" placeholder='Option D' onChange={(e)=>setoptionD(e.target.value)}/>
-        <input type="text" className='w-100 form form-control my-3' placeholder='Correct Answer' onChange={(e)=>setcorrectAnswer(e.target.value)} />
+        <input type="text" value={question} placeholder='Question' onChange={(e)=>setquestion(e.target.value)} className='form form-control col-12 my-3' />
+        <input type="text" value={optionA}  placeholder='Option A' onChange={(e)=>setoptionA(e.target.value)}/> 
+        <input type="text" value={optionB} placeholder='Option B' onChange={(e)=>setoptionB(e.target.value)}/> 
+        <input type="text" value={optionC} placeholder='Option C' onChange={(e)=>setoptionC(e.target.value)}/> 
+        <input type="text" value={optionD} placeholder='Option D' onChange={(e)=>setoptionD(e.target.value)}/>
+        <input type="text" value={correctAnswer} className='w-100 form form-control my-3' placeholder='Correct Answer' onChange={(e)=>setcorrectAnswer(e.target.value)} />
         <button className='w-100 btn btn-secondary my-5' onClick={save}> Save </button>
     </div>
     </center>
