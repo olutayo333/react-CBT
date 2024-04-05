@@ -12,7 +12,7 @@ const Home = () => {
       
       {/* <button btn btn-lg btn-secondary> <Link to="/admin"> EXAMINER</Link> </button>
       <button>EXAMINEE </button> */}
-      <div className='row ms-5'>
+      <div className='row ms-3'>
       <Link to="/admin" className='col-5 text-danger'> <h2>EXAMINER </h2></Link>
        <h1 className=' col-1'><b>|</b></h1> 
       <Link to="/intro" className='col-5 text-primary'> <h2> EXAMINEE</h2></Link>

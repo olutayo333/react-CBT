@@ -9,6 +9,7 @@ import Cbt from './components/Cbt';
 import Admin from './components/Admin';
 import Home from './components/Home';
 import Intro from './components/Intro';
+import Timer from './components/Timer';
 import { Route, Routes } from 'react-router-dom';
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
           
           <Route path='home' element={<Home/>} />
           <Route path="intro" element={<Intro/>} />
+          <Route path='timer' element={<Timer/>} />
           <Route path="/*" element={<Home/>} />
+          
         </Routes>
     </>
   );
