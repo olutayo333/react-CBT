@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
 
 const Cbt = () => {
@@ -17,7 +18,7 @@ const Cbt = () => {
     const [score, setscore] = useState(0);
     const [visible2, setvisible2] = useState( false); const [visible3, setvisible3] = useState( false); const [visible4, setvisible4] = useState( false); const [visible5, setvisible5] = useState( false)
     const [visible6, setvisible6] = useState( false); const [visible7, setvisible7] = useState( false); const [visible8, setvisible8] = useState( false); const [visible9, setvisible9] = useState( false); const [visible10, setvisible10] = useState( false)
-
+    const [izloading, setizloading]= useState(true);
     let allQuestions=[];
     let point =0
     //let questionURL = "http://localhost:7002/user/fetchquestions"
@@ -36,6 +37,7 @@ const Cbt = () => {
       .then((response)=>{ console.log(response);
         if(!response.data.status){alert(response.data.message)}
         else if (response.data.status){
+          setizloading(false)
           allQuestions=response.data.result
           let index = Math.floor((Math.random()*allQuestions.length-1)+1);
           setquestion1(allQuestions[index].question); setoption1A(allQuestions[index].optionA); setoption1B(allQuestions[index].optionB); setoption1C(allQuestions[index].optionC); setoption1D(allQuestions[index].optionD); setcorrectAnswer1(allQuestions[index].correctAnswer);  
@@ -182,23 +184,31 @@ const Cbt = () => {
           navigate("/home")
         }
       
-
   return (
     <center>
-    <div className='container-fluid my-5'>  
+    <div className='container-fluid my-0'>  
       {/* {timer} <button onClick={timerF}> reduce </button> */}
       {/* <input type="text" onChange={(e)=>settext(e.target.value)} /> */}
       
-      <div className='btn-group role="group text-white bg-secondary' > <button className='btn' disabled={question1}>1</button> <button className='btn' onClick={two} disabled={question2}>2</button> <button className='btn' onClick={three} disabled={question3}>3</button> <button className='btn' onClick={four} disabled={question4}>4</button> <button onClick={five} className='btn' disabled={question5}>5</button> <button className='btn' onClick={six} disabled={question6}>6</button><button className='btn' onClick={seven} disabled={question7}>7</button><button className='btn' onClick={eight} disabled={question8}>8</button><button className='btn' onClick={nine} disabled={question9}>9</button> <button className='btn' onClick={ten} disabled={question10}>10</button> 
+      <div className='btn-group role="group text-white bg-danger me-5 pe-0 w-100 lg:w-100 ms-0 ps-0' style={{position:"sticky", top:"0"}}> 
+        <button className='btn' disabled={question1}>1</button> <button className='btn' onClick={two} disabled={question2}>2</button> <button className='btn' onClick={three} disabled={question3}>3</button> <button className='btn' onClick={four} disabled={question4}>4</button> <button onClick={five} className='btn' disabled={question5}>5</button> <button className='btn' onClick={six} disabled={question6}>6</button><button className='btn' onClick={seven} disabled={question7}>7</button><button className='btn' onClick={eight} disabled={question8}>8</button><button className='btn' onClick={nine} disabled={question9}>9</button> <button className='btn' onClick={ten} disabled={question10}>10</button> 
             {/* <button>11</button> <button>12</button> <button>13</button> <button>14</button> <button>15</button> <button>16</button>
             <button>17</button> <button>18</button> <button>19</button> <button>20</button> */}
       </div> <hr />
-         1.<span className='mx-3'>{question1}</span> <br />
-        <input  type="radio" name='option' value={option1A} onChange={(e)=>setanswer1(e.target.value)} /> {option1A} <span className='mx-2'></span>
-        <input  type="radio" name='option' value={option1B} onChange={(e)=>setanswer1(e.target.value)} /> {option1B}  <span className='mx-2' ></span>
-        <input type="radio" name='option' value={option1C} onChange={(e)=>setanswer1(e.target.value)} /> {option1C}   <span className='mx-2'></span>
-        <input type="radio" name='option' value={option1D} onChange={(e)=>setanswer1(e.target.value)} /> {option1D} <span className='mx-1'></span>
-        <hr />
+
+         {
+          !izloading?
+          <>
+          1.<span className='mx-3'>{question1}</span> <br />
+            <input  type="radio" name='option' value={option1A} onChange={(e)=>setanswer1(e.target.value)} /> {option1A} <span className='mx-2'></span>
+            <input  type="radio" name='option' value={option1B} onChange={(e)=>setanswer1(e.target.value)} /> {option1B}  <span className='mx-2' ></span>
+            <input type="radio" name='option' value={option1C} onChange={(e)=>setanswer1(e.target.value)} /> {option1C}   <span className='mx-2'></span>
+            <input type="radio" name='option' value={option1D} onChange={(e)=>setanswer1(e.target.value)} /> {option1D} <span className='mx-1'></span>
+            <hr />
+          </>:
+          <>
+          <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" /> Loading....   </> 
+        }
 
         { visible2 ? 
           <>
