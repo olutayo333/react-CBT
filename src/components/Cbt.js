@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
+import Topbutton from './Topbutton';
+import Timer3 from './Timer3';
 
-const Cbt = () => {
+
+const Cbt = ({duration}) => {
     const [question1, setquestion1] = useState(""); const [option1A, setoption1A] = useState(""); const[option1B, setoption1B] = useState(""); const[option1C, setoption1C] = useState(""); const[option1D, setoption1D] = useState(""); const[answer1, setanswer1]=useState(""); const[correctAnswer1, setcorrectAnswer1]=useState("") 
     const [question2, setquestion2] = useState(""); const [option2A, setoption2A] = useState(""); const[option2B, setoption2B] = useState(""); const[option2C, setoption2C] = useState(""); const[option2D, setoption2D] = useState(""); const[answer2, setanswer2]=useState(""); const[correctAnswer2, setcorrectAnswer2]=useState("")
     const [question3, setquestion3] = useState(""); const [option3A, setoption3A] = useState(""); const[option3B, setoption3B] = useState(""); const[option3C, setoption3C] = useState(""); const[option3D, setoption3D] = useState(""); const[answer3, setanswer3]=useState(""); const[correctAnswer3, setcorrectAnswer3]=useState("")
@@ -38,6 +41,7 @@ const Cbt = () => {
         if(!response.data.status){alert(response.data.message)}
         else if (response.data.status){
           
+
           allQuestions=response.data.result
           let index = Math.floor((Math.random()*allQuestions.length-1)+1);
           setquestion1(allQuestions[index].question); setoption1A(allQuestions[index].optionA); setoption1B(allQuestions[index].optionB); setoption1C(allQuestions[index].optionC); setoption1D(allQuestions[index].optionD); setcorrectAnswer1(allQuestions[index].correctAnswer);  
@@ -184,19 +188,35 @@ const Cbt = () => {
           console.log("score = ", (point/10)*100);
           navigate("/home")
         }
-      
+
+        const [time, settime] = useState(duration)
+        useEffect(()=>{ 
+        setTimeout(()=>{ settime(time - 1000);}, 1000) }, [time]);
+         const  getFormattedTime = (milliseconds) => {
+            let total_seconds = parseInt(Math.floor(milliseconds/1000));
+            let total_minutes = parseInt(Math.floor(total_seconds/60))
+            let seconds = parseInt(total_seconds % 60);
+            let minutes = parseInt(total_minutes % 60);
+            return` ${minutes} : ${seconds}`
+         }
+         //setTimeout(()=>submit(), 20000)
+         useEffect(()=>{
+          const timeoutID = setTimeout(()=>{submit()},600002);
+          return ()=> clearTimeout(timeoutID)
+         },[])
   return (
     <center>
-    <div className='container-fluid my-0'>  
-      {/* {timer} <button onClick={timerF}> reduce </button> */}
-      {/* <input type="text" onChange={(e)=>settext(e.target.value)} /> */}
-      
-      <div className='btn-group role="group text-white bg-danger me-5 pe-0 w-100 lg:w-100 ms-0 ps-0' style={{position:"sticky", top:"0"}}> 
+    
+      <div className=' text-white bg-danger me-5 pe-0 w-100 lg:w-100 ms-0 ps-0' style={{position:"sticky", top:"0"}}> 
+      <div className='pt-2 mt-2  px-5 fs-1 rounded mx-auto w-50 align-items-center justify-content-center' style={{backgroundColor:"white", color:"red", position:"sticky", top:"0", letterSpacing:"30px",}}> <b  style={{paddingLeft:"10%"}}>{getFormattedTime(time)}</b> </div>
         <button className='btn' disabled={question1}>1</button> <button className='btn' onClick={two} disabled={question2}>2</button> <button className='btn' onClick={three} disabled={question3}>3</button> <button className='btn' onClick={four} disabled={question4}>4</button> <button onClick={five} className='btn' disabled={question5}>5</button> <button className='btn' onClick={six} disabled={question6}>6</button><button className='btn' onClick={seven} disabled={question7}>7</button><button className='btn' onClick={eight} disabled={question8}>8</button><button className='btn' onClick={nine} disabled={question9}>9</button> <button className='btn' onClick={ten} disabled={question10}>10</button> 
             {/* <button>11</button> <button>12</button> <button>13</button> <button>14</button> <button>15</button> <button>16</button>
             <button>17</button> <button>18</button> <button>19</button> <button>20</button> */}
       </div> <hr />
-
+      <div>
+    <div className='container-fluid my-0'>  
+      {/* {timer} <button onClick={timerF}> reduce </button> */}
+      {/* <input type="text" onChange={(e)=>settext(e.target.value)} /> */}
          {
           !izloading?
           <>
@@ -300,7 +320,7 @@ const Cbt = () => {
 
         <hr /> <button className='col-12 btn btn-lg btn-danger my-5' onClick={submit}> Submit </button>
         
-      
+      </div>
     </div>
     </center>
   )
