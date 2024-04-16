@@ -78,7 +78,7 @@ const Admin = () => {
 
     const confirmEditQuestion= ()=>{
       //console.log(eQuestion, eOptionA, eOptionB, eOptionC, eOptionD, eCorrectAnswer);
-      if ((eCorrectAnswer.match(eOptionA)) || (eCorrectAnswer.match(eOptionB)) || (eCorrectAnswer.match(eOptionC)) || (eCorrectAnswer.match(eOptionD)))
+      if ((eCorrectAnswer||correctAnswer.match(eOptionA || optionA)) || (eCorrectAnswer||correctAnswer.match(eOptionB || optionB)) || (eCorrectAnswer||correctAnswer.match(eOptionC||optionC)) || (eCorrectAnswer||correctAnswer.match(eOptionD||optionD)))
      { axios.post(editURL, {editID, eQuestion, eOptionA, eOptionB, eOptionC, eOptionD, eCorrectAnswer })
       .then((response)=>{
         if (response.data.status){alert(response.data.message); setShow(false); reloadQues()}
