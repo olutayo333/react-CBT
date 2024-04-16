@@ -78,11 +78,14 @@ const Admin = () => {
 
     const confirmEditQuestion= ()=>{
       //console.log(eQuestion, eOptionA, eOptionB, eOptionC, eOptionD, eCorrectAnswer);
-      axios.post(editURL, {editID, eQuestion, eOptionA, eOptionB, eOptionC, eOptionD, eCorrectAnswer })
+      if ((eCorrectAnswer.match(eOptionA)) || (eCorrectAnswer.match(eOptionB)) || (eCorrectAnswer.match(eOptionC)) || (eCorrectAnswer.match(eOptionD)))
+     { axios.post(editURL, {editID, eQuestion, eOptionA, eOptionB, eOptionC, eOptionD, eCorrectAnswer })
       .then((response)=>{
         if (response.data.status){alert(response.data.message); setShow(false); reloadQues()}
         else{alert(response.data.message);}
       })
+    }
+    else{alert("Answer must match one of the options")}
     }
 
   return (
