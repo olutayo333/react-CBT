@@ -40,8 +40,6 @@ const Cbt = ({duration}) => {
       .then((response)=>{ console.log(response);
         if(!response.data.status){alert(response.data.message)}
         else if (response.data.status){
-          
-
           allQuestions=response.data.result
           let index = Math.floor((Math.random()*allQuestions.length-1)+1);
           setquestion1(allQuestions[index].question); setoption1A(allQuestions[index].optionA); setoption1B(allQuestions[index].optionB); setoption1C(allQuestions[index].optionC); setoption1D(allQuestions[index].optionD); setcorrectAnswer1(allQuestions[index].correctAnswer);  
